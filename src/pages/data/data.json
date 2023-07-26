@@ -1,0 +1,326 @@
+{
+  "project" : [
+    {
+      "id": "robotics-project",
+      "project_name": "Robotics Project",
+      "department_name": "Robotics Department",
+      "project_description": "The goal of this project is to design, build, and program a robot that can perform a specific task. The task could be anything from simple to complex, such as following a line, picking up objects, or navigating a maze. The robot could be made from a variety of materials, such as cardboard, wood, or metal. The programming language used to control the robot could be any language that is compatible with the robot's hardware.",
+      "project_image": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+      "progress": "50",
+      "raised": "200",
+      "goal": "2000",
+      "due_date": "08/07/2023",
+      "project_updates": [
+        {
+          "project_update_title": "Initial Setup",
+          "project_update_image": "https://images.unsplash.com/photo-1597007519573-0575fd4cc96b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 05, 2023",
+          "update_description": "Created Initial Setup"
+        },
+        {
+          "project_update_title": "Documentation",
+          "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 07, 2023",
+          "update_description": "Created Documentation"
+        },
+        {
+          "project_update_title": "Documentation",
+          "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 07, 2023",
+          "update_description": "Created Documentation"
+        },
+        {
+          "project_update_title": "Documentation",
+          "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 07, 2023",
+          "update_description": "Created Documentation"
+        }
+      ],
+
+      "background": "Robotics is a rapidly growing field with many potential applications. Robots are already being used in a variety of industries, including manufacturing, healthcare, and customer service. As technology continues to develop, robots will become even more capable and versatile.",
+      "methodology": "The prototyping methodology in robotics involves creating initial versions of a robot, called prototypes, to test and refine its design, functionality, and performance. The process includes identifying requirements, creating a conceptual design, building the prototype, testing and evaluating its performance, refining the design based on feedback, and repeating the cycle. This iterative approach allows for the early identification of issues, efficient problem-solving, and the development of a final robot that meets the desired specifications.",
+      "other_info": "robotics other info",
+
+      "proponents" : [
+        {
+          "name": "Sheena Cruz",
+          "image": "/assets/app-icons/student-girl-1.svg"
+        },
+        {
+          "name": "John Ramirez",
+          "image": "/assets/app-icons/student-boy-1.svg"
+        },
+        {
+          "name": "Kylie Falcon",
+          "image": "/assets/app-icons/student-girl-2.svg"
+        }
+      ]
+    },
+
+    {
+      "id": "mobile-app-development",
+      "project_name": "Mobile App Development",
+      "department_name": "CICS Department",
+      "project_description": "The mobile app development process involves creating software applications specifically designed to run on mobile devices such as smartphones and tablets. These apps are typically built to provide users with a wide range of functionalities, including entertainment, productivity, communication, or utility.",
+      "project_image": "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      "progress": "20",
+      "raised": "3000",
+      "goal": "8000",
+      "due_date": "10/07/2023",
+      "project_updates": [
+        {
+          "project_update_title": "Initial Development",
+          "project_update_image": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 05, 2023",
+          "update_description": "Developed Initial Program"
+        },
+        {
+          "project_update_title": "Documentation",
+          "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "Jun 07, 2023",
+          "update_description": "Created Documentation"
+        }
+      ],
+
+      "background": "Mobile app development has become increasingly popular with the proliferation of mobile devices and the growing demand for convenient and accessible digital solutions. Developers use various programming languages, frameworks, and tools to create mobile apps for different platforms, including iOS (Apple) and Android (Google). The app development process typically involves several stages, including planning, design, development, testing, and deployment.",
+      "methodology": "The Agile methodology is an iterative and collaborative approach to mobile app development. It emphasizes flexibility, user feedback, and cross-functional teamwork. Development is divided into iterations, with regular delivery of working increments. The methodology allows for continuous planning, adaptation, and improvement based on user needs and market trends. Agile enables faster development cycles, enhanced collaboration, and the delivery of high-quality mobile apps that align with user expectations.",
+      "other_info": "mobile app development other info",
+
+      "proponents" : [
+        {
+          "name": "Anna Garcia",
+          "image": "/assets/app-icons/student-girl-1.svg"
+        },
+        {
+          "name": "Maurice Cruz",
+          "image": "/assets/app-icons/student-boy-1.svg"
+        },
+        {
+          "name": "Shiela Frago",
+          "image": "/assets/app-icons/student-girl-2.svg"
+        }
+      ]
+    },
+
+    {
+      "id": "network-optimization",
+      "project_name": "Network Optimization for Batangas Provincial Library",
+      "department_name": "CICS Department",
+      "project_description": "Network optimization for the Batangas Provincial Library involves improving the efficiency, reliability, and speed of the library's network infrastructure. By optimizing the network, the library aims to enhance connectivity, enable faster data transfer, and ensure seamless access to digital resources for library staff and patrons.",
+      "project_image": "https://images.unsplash.com/photo-1520869562399-e772f042f422?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80",
+      "progress": "80",
+      "raised": "4000",
+      "goal": "10000",
+      "due_date": "09/15/2023",
+      "project_updates": [
+        {
+          "project_update_title": "Initial Configuration",
+          "project_update_image": "https://plus.unsplash.com/premium_photo-1661277879262-5a374156cd70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "May 07, 2023",
+          "update_description": "Created Initial Configuration Changes"
+        },
+        {
+          "project_update_title": "Documentation",
+          "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          "date": "May 15, 2023",
+          "update_description": "Created Documentation"
+        }
+      ],
+
+      "background": "The Batangas Provincial Library is a vital resource center serving the community with a vast collection of books, research materials, and digital resources. In today's digital age, it is crucial for the library to have a robust and optimized network infrastructure to support the increasing demand for online services, internet access, and digital content.",
+      "methodology": "The PPDIOO methodology is commonly used for network optimization. It involves preparing by analyzing the current network infrastructure, planning by designing an optimized network, implementing the planned design, operating and managing the network, and continuously optimizing it for optimal performance. The PPDIOO methodology provides a systematic approach to improving network performance, reliability, and security.",
+      "other_info": "network optimization other info",
+
+      "proponents" : [
+        {
+          "name": "Stephanie Lopez",
+          "image": "/assets/app-icons/student-girl-1.svg"
+        },
+        {
+          "name": "Warren Catilo",
+          "image": "/assets/app-icons/student-boy-1.svg"
+        },
+        {
+          "name": "John Michael Julve",
+          "image": "/assets/app-icons/student-boy-2.svg"
+        }
+      ]
+    },
+
+    {
+      "user_proj": [
+        {
+          "id": "smart-classroom-technology",
+          "project_name": "Implementation of Smart Classroom Technology in a University Setting",
+          "department_name": "CICS Department",
+          "project_description": "This project aims to enhance the learning experience in a university by implementing smart classroom technology. It involves integrating network technology and smart devices to create an interactive and connected learning environment. The project will focus on upgrading existing classrooms with features such as interactive displays, wireless connectivity, and smart devices like tablets or laptops for students and teachers.",
+          "project_image": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+          "progress": "50",
+          "raised": "200",
+          "goal": "2000",
+          "due_date": "08/07/2023",
+          "project_updates": [
+            {
+              "project_update_title": "Initial Assessment Created",
+              "project_update_image": "https://images.unsplash.com/photo-1597007519573-0575fd4cc96b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 05, 2023",
+              "update_description": "The project team has completed the initial assessment phase. Classroom visits were conducted, and data regarding the existing infrastructure, such as network connectivity and audiovisual equipment, were collected. The team also interviewed faculty members, IT staff, and students to gather their perspectives on current challenges and expectations for smart classroom technology."
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            }
+          ],
+    
+          "background": "Traditional classrooms often lack the necessary tools and technologies to engage students effectively. By implementing smart classroom technology, universities can create an immersive learning environment that promotes active participation and collaboration among students. This project recognizes the need to leverage network technology and smart devices to transform traditional classrooms into modern, interactive spaces.",
+          "methodology": "The methodology for implementing smart classroom technology involves conducting an initial assessment to evaluate infrastructure requirements and stakeholder needs, followed by infrastructure upgrades, smart device and software integration, training, and ongoing support to ensure successful implementation and utilization of the technology.",
+          "other_info": "smart classroom technology other info",
+    
+          "proponents" : [
+            {
+              "name": "Sheena Cruz",
+              "image": "/assets/app-icons/student-girl-1.svg"
+            },
+            {
+              "name": "John Ramirez",
+              "image": "/assets/app-icons/student-boy-1.svg"
+            },
+            {
+              "name": "Kylie Falcon",
+              "image": "/assets/app-icons/student-girl-2.svg"
+            }
+          ]
+        },
+
+        {
+          "id": "iot-based-asset-tracking-system-for-warehouse-management",
+          "project_name": "Implementation of IoT-based Asset Tracking System for Warehouse Management",
+          "department_name": "CICS Department",
+          "project_description": "This project aims to improve warehouse management efficiency by implementing an IoT-based asset tracking system. The project involves utilizing network technology and smart devices to monitor and track inventory, equipment, and other assets in real time. By doing so, the project aims to enhance inventory accuracy, reduce losses, streamline operations, and improve overall warehouse productivity.",
+          "project_image": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+          "progress": "50",
+          "raised": "200",
+          "goal": "2000",
+          "due_date": "08/07/2023",
+          "project_updates": [
+            {
+              "project_update_title": "Requirement Gathering and Analysis",
+              "project_update_image": "https://images.unsplash.com/photo-1597007519573-0575fd4cc96b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 05, 2023",
+              "update_description": "The project team has completed the initial phase of requirement gathering and analysis. Several meetings were conducted with warehouse management stakeholders, including warehouse managers, IT personnel, and inventory control staff. The team gathered insights into the existing asset-tracking challenges and identified key requirements for the IoT-based asset-tracking system."
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            }
+          ],
+    
+          "background": "Traditional warehouse management systems often rely on manual processes and periodic inventory checks, which can be time-consuming and prone to errors. By implementing an IoT-based asset-tracking system, warehouses can leverage network technology and smart devices to automate asset monitoring and tracking. This enables real-time visibility of assets, enhances inventory control, and enables efficient resource allocation.",
+          "methodology": "The methodology for implementing an asset tracking system in a warehouse involves gathering requirements, analyzing existing infrastructure, and setting up sensor and network infrastructure. Data collection and integration are conducted to capture asset data and integrate it with the warehouse management system. Additionally, a user-friendly dashboard is created for real-time visibility, and testing and deployment are carried out along with training and support for warehouse staff.",
+          "other_info": "iot-based asset tracking system for warehouse management other info",
+    
+          "proponents" : [
+            {
+              "name": "Sheena Cruz",
+              "image": "/assets/app-icons/student-girl-1.svg"
+            },
+            {
+              "name": "John Ramirez",
+              "image": "/assets/app-icons/student-boy-1.svg"
+            },
+            {
+              "name": "Kylie Falcon",
+              "image": "/assets/app-icons/student-girl-2.svg"
+            }
+          ]
+        },
+
+        {
+          "id": "smart-city-infrastructure-for-intelligent-traffic-management",
+          "project_name": "Implementation of Smart City Infrastructure for Intelligent Traffic Management",
+          "department_name": "CICS Department",
+          "project_description": "This project aims to transform a city's traffic management system by implementing a smart city infrastructure. The project involves leveraging network technology, smart devices, and data analytics to optimize traffic flow, enhance safety, and improve overall transportation efficiency. The goal is to create an intelligent traffic management system that can monitor, analyze, and respond to real-time traffic conditions effectively.",
+          "project_image": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+          "progress": "50",
+          "raised": "200",
+          "goal": "2000",
+          "due_date": "08/07/2023",
+          "project_updates": [
+            {
+              "project_update_title": "Traffic Data Collection Infrastructure Deployed",
+              "project_update_image": "https://images.unsplash.com/photo-1597007519573-0575fd4cc96b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 05, 2023",
+              "update_description": "The project team has successfully completed the deployment of the traffic data collection infrastructure. Smart sensors and cameras have been installed at strategic locations throughout the city to capture real-time traffic data. These sensors are designed to monitor vehicle flow, speed, and congestion levels accurately."
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            },
+            {
+              "project_update_title": "Documentation",
+              "project_update_image": "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+              "date": "Jun 07, 2023",
+              "update_description": "Created Documentation"
+            }
+          ],
+    
+          "background": "Cities face increasing challenges in managing traffic congestion, road safety, and transportation efficiency. By implementing a smart city infrastructure for intelligent traffic management, cities can leverage advanced technologies to gather real-time data, analyze traffic patterns, and optimize traffic control strategies. This project recognizes the potential of network technology and smart devices in creating a connected and responsive traffic management system.",
+          "methodology": "The methodology for implementing an intelligent traffic management system involves deploying a network of sensors and cameras for traffic data collection, establishing a centralized control system for monitoring and integrating data, applying data analytics and predictive modeling techniques for optimized traffic control, and continuously evaluating and optimizing the system based on feedback from stakeholders. This comprehensive approach enables real-time monitoring, adaptive signal control, incident detection, and overall improvement of traffic management efficiency.",
+          "other_info": "smart city infrastructure for intelligent traffic management other info",
+    
+          "proponents" : [
+            {
+              "name": "Sheena Cruz",
+              "image": "/assets/app-icons/student-girl-1.svg"
+            },
+            {
+              "name": "John Ramirez",
+              "image": "/assets/app-icons/student-boy-1.svg"
+            },
+            {
+              "name": "Kylie Falcon",
+              "image": "/assets/app-icons/student-girl-2.svg"
+            }
+          ]
+        }
+      ]
+    }
+    
+  ]
+}
