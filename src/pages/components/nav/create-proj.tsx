@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 // Firebase Imports
 import { auth, googleProvider, db, storage } from "../../../firebase";
 
-import { addDoc, collection, doc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 import Card from "../tools/Card";
 
@@ -21,52 +21,78 @@ const CreateProj = (): React.JSX.Element => {
   // Add User Data to Firestore
   const createUserProj = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userDataParentColRef = collection(db, "users", auth?.currentUser?.uid ?? "", "projects");
+    const form = e.target as HTMLFormElement;
+
     // Generate document ID
     const projId = doc(collection(db, "dummy")).id;
     console.log("THE ID IS :", projId);
-    
-    const form = e.target as HTMLFormElement;
+    const userDataParentDocRef = doc(db, "users", auth?.currentUser?.uid ?? "", "projects", projId);
+    const userDataProjectUpdatesColRef = collection(db, "users", auth?.currentUser?.uid ?? "", "projects", projId, "project_updates");
+
     const data = [
       {
+        id: projId,
+        image: "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+        progress: Math.floor(Math.random() * 100) + 1,
+        
         // Proponents Info
         name: form.proponent_name.value as string,
         address: form.address.value as string,
-        contact_no: form.contact_no.value as string
-      },
-
-      {
+        contact_no: form.contact_no.value as string,
         // Project Info
         title: form.project_title.value as string,
         funds_needed: form.funds_needed.value as string,
         duration: form.duration.value as string,
         department: form.department.value as string,
         adviser: form.adviser.value as string,
-        adviser_no: form.adviser_no.value as string
-      },
-
-      {
+        
         // Project Detail
         introduction : form.introduction.value as string,
         background : form.background.value as string,
-        methodology : form.methodology.value as string
-      }
+        methodology : form.methodology.value as string,
+      },
+      // Project Updates
+      [
+        {
+          project_update_title: "Initial Setup",
+          project_update_image: "https://images.unsplash.com/photo-1597007519573-0575fd4cc96b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          date: "Jun 05, 2023",
+          update_description: "Created Initial Setup"
+        },
+        {
+          project_update_title: "Documentation",
+          project_update_image: "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          date: "Jun 07, 2023",
+          update_description: "Created Documentation"
+        },
+        {
+          project_update_title: "Documentation",
+          project_update_image: "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          date: "Jun 07, 2023",
+          update_description: "Created Documentation"
+        },
+        {
+          project_update_title: "Documentation",
+          project_update_image: "https://images.unsplash.com/photo-1600267204091-5c1ab8b10c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+          date: "Jun 07, 2023",
+          update_description: "Created Documentation"
+        }
+      ]
     ];
 
     try {
-      await Promise.all(data.map(async (info, index) => {
-        // Add project data to the database's collection
-        if (index === 0) {
-          await addDoc(collection(userDataParentColRef, projId, "proponents info"), info);
-        } else if (index === 1) {
-          await addDoc(collection(userDataParentColRef, projId, "project info"), info);
-        } else if (index === 2) {
-          await addDoc(collection(userDataParentColRef, projId, "project detail"), info);
-        }
-      }));
+      await setDoc(userDataParentDocRef, data[0]);
+      // const projectUpdates= data[1] as Array<{}>;
+      // // Project Updates (just static updates for now, change it to real updates in the future)
+      // projectUpdates.map(async (projectUpdate) => {
+      //   console.log("DATA 1 = ", projectUpdate) 
+      //   await addDoc(userDataProjectUpdatesColRef, projectUpdate)
+      // });
+
       console.log("New Project Created...");
       // Go to User's Project Page
-      // router.push("/components/nav/user-proj");
+      // await router.push("/components/nav/user-proj");
+      form.reset();
     } catch (error) {
       console.log(error);
     }
@@ -128,11 +154,6 @@ const CreateProj = (): React.JSX.Element => {
               <div className="mt-4 mb-4">
                 <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Adviser:</label>
                 <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Adviser Name" name="adviser" />
-              </div>
-              {/*---------------------------- Adviser Contact No -------------------------------------*/}
-              <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Adviser Contact No:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Adviser Contact No" name="adviser_no" />
               </div>
 
               <div className="flex flex-col items-center">

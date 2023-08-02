@@ -5,7 +5,6 @@ import Image from "next/image";
 
 // Firebase Imports
 import { auth, googleProvider, db, storage } from "../../../firebase";
-
 import {
   // Firebase Query (collection & document)
   doc, collection, 
@@ -23,29 +22,40 @@ import {
 // User Defined Imports
 import Card from "../tools/Card";
 import ProgressBar from "../tools/ProgressBar";
+import { useStateService } from "@/shared/StateService";
 
 interface ProjectData {
   id: string;
   title: string;
-  description: string;
+  introduction: string;
   progress: string;
   image: string;
 }
 
 const Discover = (): React.JSX.Element => {
   const [currentData, setData] = useState<ProjectData[]>([]);
+  // Get current subscription states
+  const { state } = useStateService();
 
   // Get Document/s and its Data
-  const getProjects = async (): Promise<void> => {
-    const projColRef = collection(db, 'events_categories');
-    const query = await getDocs(projColRef);
-
-    const queryData = query.docs.map((doc): ProjectData => ({
-      ...(doc.data() as ProjectData),
-    }));
-    setData(queryData);
+  const getProjects = async () => {
+    // Optimize it in the future, instead of fetching all projects in one query, do the lazy loading as it might boost performance
+    const usersQuerySnapshot = await getDocs(collection(db, 'users'));
+    const allProjectsData: ProjectData[] = [];
+    
+    for (const userDoc of usersQuerySnapshot.docs) {
+      const projectsQuerySnapshot = await getDocs(collection(userDoc.ref, 'projects'));
+      
+      console.log(`Projects for user ${userDoc.id}:`);
+      const queryData = projectsQuerySnapshot.docs.map((doc): ProjectData => ({
+        ...(doc.data() as ProjectData),
+      }));
+      
+      allProjectsData.push(...queryData); // Add the projects data to the array
+    }
+    setData(allProjectsData);
+    // console.log("THE CURRENT DATA PUTANGINA IS: ", currentData);
   }
-  console.log("THE CURRENT DATA PUTANGINA IS: ", currentData)
   // Handle Data Fetching's Side Effects
   useEffect(() => {
     getProjects();
@@ -59,8 +69,8 @@ const Discover = (): React.JSX.Element => {
       <div className="grid grid-cols-3 justify-items-center">
         {currentData.length > 0 ? (
           currentData.map((proj: ProjectData) => (
-            <Card>
-              <Link key={proj.id} href={`/${proj.id}`}>
+            <Card key={proj.id}>
+              <Link href={`/discover/${proj.id}`}>
                 <div className="w-full h-32 mx-auto bg-slate-600 p-1">
                   <div className="w-full h-full flex items-center justify-center overflow-hidden">
                     <Image
@@ -72,24 +82,24 @@ const Discover = (): React.JSX.Element => {
                     />
                   </div>
                 </div>
-                <h3 className="card-text card-text-h1">{proj.title}</h3>
-                <p className="card-text">{proj.description}</p>
+                <h3 className="card-text-h1">{proj.title}</h3>
+                <p>{proj.introduction}</p>
 
                 {/*------------------ Raised Amount Details --------------------------*/}
                 <ProgressBar progress={proj.progress} />
                 <div className="flex items-center justify-between">
-                  <p className="card-text font-thin">Raised: ₱500,000</p>
+                  <p className="font-thin">Raised: ₱500,000</p>
                   {/* Some Amount */}
-                  <p className="card-text font-thin">Funded: ₱500,000</p>
+                  <p className="font-thin">Funded: ₱500,000</p>
                   {/* Some Amount */}
-                  <p className="card-text font-thin">Due Date: 01/02/23 </p>
+                  <p className="font-thin">Due Date: 01/02/23 </p>
                   {/* Due Date */}
                 </div>
               </Link>
             </Card>
         ))) : (
           // Render a loading state or fallback content while fetching the data
-          <p>Loading...</p>
+          <p className={`${state.text_color}`}>Loading...</p>
         )}
       </div>
 

@@ -1,7 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useStateService } from "@/shared/StateService";
 
 const Home = (): React.JSX.Element => {
+  const { state } = useStateService();
+
   return (
     <div className="relative">
       <div className="relative" style={{ width: "81%", height: "auto" }}>
@@ -29,7 +32,7 @@ const Home = (): React.JSX.Element => {
         </section>
 
         <section className="place-self-center">
-          <h2 className="text-6xl tracking-wide">
+          <h2 className={`text-6xl tracking-wide ${state.text_color}`}>
             CATALYST <br /> OF <br /> CHANGE
           </h2>
 

@@ -24,11 +24,11 @@ const LoginPage = (): React.JSX.Element => {
       await signInWithEmailAndPassword(auth, email, pass);
       // Get UserName
       getUserName();
-      form.reset();
       
       console.log("Login Successful...");
       // Once Logged In, Discover Page is the first to land on and user unlocks other app features like create project, fund etc.
       router.push('/components/nav/discover');
+      form.reset();
     } catch (error) {
       console.log(error);
     }

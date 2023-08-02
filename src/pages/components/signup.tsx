@@ -28,11 +28,11 @@ const SignUpPage = (): React.JSX.Element => {
         // Get other credentials and put in database
         setUserData(e);
         console.log(`User Created. Id : ${auth.currentUser?.uid}`);
-        form.reset();
-
+        
         // Redirect to Login Page
         console.log("Redirecting to Login Page...");
         await router.push('/components/login');
+        form.reset();
       } else {
         console.log("Re-entered Password doesn't match the password");
       }

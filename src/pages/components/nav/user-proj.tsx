@@ -16,7 +16,7 @@ import ProgressBar from "../tools/ProgressBar";
 interface UserProjectData {
   id: string;
   title: string;
-  description: string;
+  introduction: string;
   progress: string;
   image: string;
 }
@@ -40,7 +40,6 @@ const UserProj = () => {
       }));
       setData(updatedData);
     });
-    console.log("updated data: ", currentData);
     return () => {
       unsubscribe();    // Unsubscribe to Events
       console.log("unsubscribed from Real time communication")
@@ -55,8 +54,8 @@ const UserProj = () => {
           <>
             {currentData.map((userproj: UserProjectData) => (
               <>
-                <Card>
-                  <Link key={userproj.id} href={`/${userproj.id}`}>
+                <Card key={userproj.id}>
+                  <Link href={`/user-proj/${userproj.id}`}>
                     <div className="w-full h-32 mx-auto bg-slate-600 p-1">
                       <div className="w-full h-full flex items-center justify-center overflow-hidden">
                         <Image
@@ -69,7 +68,7 @@ const UserProj = () => {
                       </div>
                     </div>
                     <h3 className="card-text card-text-h1">{userproj.title}</h3>
-                    <p className="card-text">{userproj.description}</p>
+                    <p className="card-text">{userproj.introduction}</p>
                     {/*------------------ Raised Amount Details --------------------------*/}
                     <ProgressBar progress={userproj.progress} />
                     <div className="flex items-center justify-between">
@@ -101,7 +100,7 @@ const UserProj = () => {
                 <div className="mt-12 self-center">
                   <Link
                     className="app-button text-xl bg-gradient-to-r from-[#669799] from-30% to-[#FF6633]"
-                    href="/components/nav/CreateProj">
+                    href="/components/nav/create-proj">
                     Create New Project
                   </Link>
                 </div>
