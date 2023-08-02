@@ -63,7 +63,7 @@ const Header = () => {
           </>
         )}
         <Link className="mx-4 mr-10" href="/components/nav/about-us">About Us</Link>
-        {/* <Button />  FIX THIS, WHENEVER I CLICK ANY BUTTON IN HEADER IT RETURNS UNDEFINED IN CONSOLE */}
+        <Button />  {/* FIX THIS, WHENEVER I CLICK ANY BUTTON IN HEADER IT RETURNS UNDEFINED IN CONSOLE */}
         <button className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={currentMode}>text</button>
         <button className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={logOut}>Logout</button>
       </ul>
