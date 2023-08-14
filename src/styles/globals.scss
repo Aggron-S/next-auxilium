@@ -19,8 +19,6 @@
 
 @layer base {
   body {
-    // @apply bg-[#2f3038] text-slate-200;
-
     h1 {
       @apply text-6xl font-semibold;
     }
@@ -31,11 +29,17 @@
       @apply text-3xl font-normal;
     }
   }
+}
 
-  .app-button {
-    @apply text-slate-200 rounded-md p-1 px-5 ;
+@layer utilities {
+  .home-bg-img {
+    background-image: url("/assets/circle-glow-effect.png");
   }
-
+  
+  .app-button {
+    @apply text-slate-200 rounded-md p-1 px-5;
+  }
+  
   // Card
   .card-text {
     @apply text-slate-900;
@@ -51,6 +55,18 @@
     @apply font-thin;
   }
 
+  // Side Menu
+  .sidemenu {
+    @apply fixed top-0 right-[-250px] w-[250px] h-screen z-0 transition-[right] duration-300 ease-out;
+    .sidemenu-content {
+      @apply h-full;
+    }
+  }
+
+  .sidemenu.show {
+    @apply right-0 z-[9999];
+  }
+
   /* ------------ For Specific Projects ----------------*/
   // Sidebar
   .sidebar {
@@ -59,6 +75,18 @@
       @apply h-full overflow-y-auto;
     }
   }
+
+  .sidebar.show {
+    @apply left-0 z-10;
+  }
+
+  .sidebar-right {
+    @apply fixed top-[150px] right-0 w-[250px] h-screen; 
+    .sidebar-right-content {
+      @apply h-full overflow-y-auto;
+    }
+  }
+
   // Content
   .content {
     @apply ml-[260px] transition-[margin-left] duration-300 ease-out;
@@ -78,6 +106,56 @@
     }
   }
 
+  @media (max-width: 767px) {
+    .sidebar {
+      @apply left-[-250px] z-10;
+    }
+
+
+    .content {
+      @apply ml-0;
+    }
+
+    .project-updates {
+      .project-update-card {
+        .project-update-card-content {
+          @apply text-sm;
+          .card-title {
+            @apply text-2xl;
+          }
+          .card-subtitle {
+            @apply text-sm;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .project-updates {
+      .project-update-card {
+        @apply w-[60%];
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    .project-updates {
+      .project-update-card {
+        @apply w-[55%];
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .sidebar-right {
+      @apply right-[-250px];
+    }
+    .content {
+      @apply mr-0;
+    }
+  }
+
+
   /* WebKit-based browsers */
   // Slider
   .slider::-webkit-scrollbar {
@@ -91,6 +169,21 @@
   }
 
   .slider::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(155, 155, 155);
+  }
+
+  // Textarea
+  textarea::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+  }
+
+  textarea::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+  }
+
+  textarea::-webkit-scrollbar-thumb:hover {
     background-color: rgb(155, 155, 155);
   }
   
@@ -109,9 +202,19 @@
   .slider::-moz-scrollbar-thumb:hover {
     background-color: rgb(155, 155, 155);
   }
+
+  // Textarea
+  textarea::-moz-scrollbar {
+    width: 6px;
+    height: 8px;
+  }
+
+  textarea::-moz-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+  }
+
+  textarea::-moz-scrollbar-thumb:hover {
+    background-color: rgb(155, 155, 155);
+  }
 }
-
-// Footer
-// .footer {
-
-// }

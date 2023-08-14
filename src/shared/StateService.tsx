@@ -2,11 +2,16 @@ import { createContext, useContext, useState, FC, ReactNode } from 'react';
 
 export interface AppState {
   darkMode: boolean;
+  windowWidth: number,
   isAuthenticated: boolean;
   text_color: string;
+  icon_color: string;
   bg_color: string;
+  currentModeIcon: string;
   header_color: string;
-  card_color: string;
+  subHeaderName: string;
+  shouldDisplaySearch: boolean;
+  userQuery: string;
 }
 
 type StateServiceType = {
@@ -32,11 +37,16 @@ export const StateServiceProvider: FC<{ children: ReactNode }> = ({ children }) 
   const [state, setState] = useState<AppState>({
     // Initial State Properties
     darkMode: false,
+    windowWidth: 1366,
     isAuthenticated: false,
     text_color: 'text-black',
+    icon_color: '#323232',
     bg_color: 'bg-slate-200',
+    currentModeIcon: 'light',
     header_color: 'bg-slate-200',
-    card_color: 'bg-[#202027]'
+    subHeaderName: '',
+    shouldDisplaySearch: false,
+    userQuery: '',
   });
 
   const updateState = <K extends keyof AppState>(

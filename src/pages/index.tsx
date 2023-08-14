@@ -6,45 +6,27 @@ const Home = (): React.JSX.Element => {
   const { state } = useStateService();
 
   return (
-    <div className="relative">
-      <div className="relative" style={{ width: "81%", height: "auto" }}>
+    <div className="h-[90vh] home-bg-img bg-cover bg-no-repeat">
+      <div className="flex items-center justify-center gap-[15%] ">
         <Image
-          className="absolute -top-28 -z-10"
+          className="h-[570px] w-[500px] max-[1000px]:hidden"
           width={0}
           height={0}
-          alt="circle-glow-effect"
-          src="/assets/circle-glow-effect.png"
-          layout="responsive"
-          objectFit="contain"
+          alt="box-logo"
+          src="/assets/box-logo.svg"
         />
-      </div>
-      <div className="grid grid-flow-col absolute inset-y-0 left-0 right-0 mx-auto">
-        <section className="relative w-[60%] h-auto place-self-center">
-          <Image
-            className=""
-            width={0}
-            height={0}
-            alt="box-logo"
-            src="/assets/box-logo.png"
-            layout="responsive"
-            objectFit="contain"
-          />
-        </section>
-
-        <section className="place-self-center">
-          <h2 className={`text-6xl tracking-wide ${state.text_color}`}>
+        <div className="flex flex-col items-start justify-center max-[1000px]:text-center max-[1000px]:items-center  gap-[15%] h-[450px] w-[350px] text-6xl tracking-wide">
+          <h2 className={`text-6xl font-normal ${state.text_color}`}>
             CATALYST <br /> OF <br /> CHANGE
           </h2>
 
           {/*---------------------------- Login -------------------------------------*/}
-          <div className="mt-36">
-            <Link
-              className="app-button bg-[#669999] hover:bg-[#78acac]"
-              href="/components/login">
-              Login
-            </Link>
-          </div>
-        </section>
+          <Link
+            className="text-slate-200 rounded-md px-7 py-2 bg-[#669999] hover:bg-[#78acac] text-lg font-extralight shadow-sm"
+            href="/components/signup">
+            Sign Up
+          </Link>
+        </div>
       </div>
     </div>
   );

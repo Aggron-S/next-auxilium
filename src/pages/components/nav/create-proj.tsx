@@ -8,7 +8,8 @@ import { auth, googleProvider, db, storage } from "../../../firebase";
 
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
-import Card from "../tools/Card";
+// User Defined Imports
+import { Card } from "../tools";
 
 const CreateProj = (): React.JSX.Element => {
   const router = useRouter();
@@ -92,7 +93,7 @@ const CreateProj = (): React.JSX.Element => {
       console.log("New Project Created...");
       // Go to User's Project Page
       // await router.push("/components/nav/user-proj");
-      form.reset();
+      // form.reset();
     } catch (error) {
       console.log(error);
     }
@@ -100,10 +101,11 @@ const CreateProj = (): React.JSX.Element => {
 
   return (
     <>
-      <div className="grid grid-cols-3 justify-items-center">
-        <div className="flex flex-col">
-          <Card inside="bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-md pt-4 pb-8 px-4 shadow-lg">
-           <form onSubmit={createUserProj}>
+      <form onSubmit={createUserProj}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Proponents Info */}
+          <div className="justify-self-center mb-4">
+            <Card inside="bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-md pt-4 pb-8 px-4 shadow-lg">
               <div className="flex flex-col">
                 <h3 className="self-center">Proponents Info</h3>
                 {/*---------------------------- Name -------------------------------------*/}
@@ -122,9 +124,31 @@ const CreateProj = (): React.JSX.Element => {
                   <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Contact No." name="contact_no" />
                 </div>
               </div>
+            </Card>
 
-
-              {/* Project Info */}
+            {/* Add another Proponent */}
+            <div className="flex flex-col">
+              <button type="button" className="app-button bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-2xl my-5" >
+                {/* make a function wherein it puts proponent's name into array so that user can add another proponent when this button is clicked*/}
+                <section className="w-[17%] h-auto mx-auto" >
+                  <Image
+                    className=""
+                    width={0}
+                    height={0}
+                    alt="box-logo"
+                    src="/assets/add-sign-small.png"
+                    layout="responsive"
+                    objectFit="contain"
+                  />
+                </section>
+                <p className="text-sm">Add another Proponent</p>
+              </button>
+            </div>
+          </div>
+          
+          {/* Project Info */}
+          <Card outside="w-full max-w-xs justify-self-center mb-6" inside="bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-md pt-4 pb-8 px-4 shadow-lg">
+            <div className="flex flex-col">
               <h3 className="self-center">Project Info</h3>
               {/*---------------------------- Title -------------------------------------*/}
               <div className="mt-4 mb-4">
@@ -159,140 +183,131 @@ const CreateProj = (): React.JSX.Element => {
               <div className="flex flex-col items-center">
                 <p className="text-xs self-center">Accepted Mode of Payment</p>
                 <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                  <input className="block" type="checkbox" />
-                  <input type="checkbox" />
-                </div>
-              </div>
-
-
-              {/* Project Detail */}
-              <h3 className="self-center">Project Detail</h3>
-              {/*---------------------------- Introduction -------------------------------------*/}
-              <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Introduction:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Introduction" name="introduction"/>
-              </div>
-              {/*---------------------------- Background -------------------------------------*/}
-              <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Background:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Background" name="background"/>
-              </div>
-              {/*---------------------------- Methodology -------------------------------------*/}
-              <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Methodology:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Methodology" name="methodology"/>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs mx-auto">Add Header Image</p>
-                  <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                    <section className="w-[50%] h-auto mx-auto" >
-                      <Image
-                        className=""
-                        width={0}
-                        height={0}
-                        alt="box-logo"
-                        src="/assets/add-sign-small.png"
-                        layout="responsive"
-                        objectFit="contain"
-                      />
-                    </section>
+                  <div className="flex space-x-2">
+                    <input type="checkbox"/>
+                    <p>GCash</p>
+                  </div>
+                  <div className="flex space-x-2">
+                    <input type="checkbox"/>
+                    <p>PayMaya</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </Card>
 
-                <div>
-                  <p className="text-xs mx-auto">Scope of Crowd Funding</p>
-                  <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                    <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                    <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                    <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                  </div>
+          {/* Project Detail */}
+          <div className="justify-self-center mb-6">
+            <Card inside="bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-md pt-4 pb-8 px-4 shadow-lg">
+              <div className="flex flex-col">
+                <h3 className="self-center">Project Detail</h3>
+                {/*---------------------------- Introduction -------------------------------------*/}
+                <div className="mt-4 mb-4">
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Introduction:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Introduction" name="introduction"></textarea>
+                </div>
+                {/*---------------------------- Background -------------------------------------*/}
+                <div className="mt-4 mb-4">
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Background:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Background" name="background"></textarea>
+                </div>
+                {/*---------------------------- Methodology -------------------------------------*/}
+                <div className="mt-4 mb-4">
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Methodology:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Methodology" name="methodology"></textarea>
                 </div>
 
-                <div>
-                  <p className="text-xs mx-auto">Add Social Media Links</p>
-                  <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                    <div className="flex flex-col items-center">
-                      <div className="flex items-center">
-                        {/* Discord */}
-                        <section className="w-[17%] h-auto mx-auto" >
-                          <Image
-                            className=""
-                            width={0}
-                            height={0}
-                            alt="box-logo"
-                            src="/assets/discord-icon.png"
-                            layout="responsive"
-                            objectFit="contain"
-                          />
-                        </section>
-                        <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                      </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs mx-auto">Add Header Image</p>
+                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
+                      <section className="w-[50%] h-auto mx-auto" >
+                        <Image
+                          className=""
+                          width={0}
+                          height={0}
+                          alt="box-logo"
+                          src="/assets/add-sign-small.png"
+                          layout="responsive"
+                          objectFit="contain"
+                        />
+                      </section>
+                    </div>
+                  </div>
 
-                      <div className="flex items-center">
-                        {/* Facebook */}
-                        <section className="w-[17%] h-auto mx-auto" >
-                          <Image
-                            className=""
-                            width={0}
-                            height={0}
-                            alt="box-logo"
-                            src="/assets/facebook-icon.png"
-                            layout="responsive"
-                            objectFit="contain"
-                          />
-                        </section>
-                        <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                      </div>
+                  <div>
+                    <p className="text-xs mx-auto">Scope of Crowd Funding</p>
+                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
+                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                    </div>
+                  </div>
 
-                      <div className="flex items-center">
-                        {/* Twitter */}
-                        <section className="w-[17%] h-auto mx-auto" >
-                          <Image
-                            className=""
-                            width={0}
-                            height={0}
-                            alt="box-logo"
-                            src="/assets/twitter-icon.png"
-                            layout="responsive"
-                            objectFit="contain"
-                          />
-                        </section>
-                        <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                      </div>
+                  <div>
+                    <p className="text-xs mx-auto">Add Social Media Links</p>
+                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
+                      <div className="flex flex-col items-center">
+                        <div className="flex items-center">
+                          {/* Discord */}
+                          <section className="w-[17%] h-auto mx-auto" >
+                            <Image
+                              className=""
+                              width={0}
+                              height={0}
+                              alt="box-logo"
+                              src="/assets/discord-icon.png"
+                              layout="responsive"
+                              objectFit="contain"
+                            />
+                          </section>
+                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                        </div>
 
+                        <div className="flex items-center">
+                          {/* Facebook */}
+                          <section className="w-[17%] h-auto mx-auto" >
+                            <Image
+                              className=""
+                              width={0}
+                              height={0}
+                              alt="box-logo"
+                              src="/assets/facebook-icon.png"
+                              layout="responsive"
+                              objectFit="contain"
+                            />
+                          </section>
+                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                        </div>
+
+                        <div className="flex items-center">
+                          {/* Twitter */}
+                          <section className="w-[17%] h-auto mx-auto" >
+                            <Image
+                              className=""
+                              width={0}
+                              height={0}
+                              alt="box-logo"
+                              src="/assets/twitter-icon.png"
+                              layout="responsive"
+                              objectFit="contain"
+                            />
+                          </section>
+                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
+                        </div>
+
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </Card>
 
-              {/* Submit button must create new id per user, output in firebase and fetch it before displaying contents. the logic must be placed inside the [proj] directory */}
-              <button type="submit" className="app-button bg-[#669999] hover:bg-[#78acac]">putangina</button>
-           </form>
-          </Card>
-
-          <button type="button" className="app-button bg-gradient-to-r from-[#669799] to-[#FF6633] rounded-2xl my-5" >
-            {/* make a function wherein it puts proponent's name into array so that user can add another proponent when this button is clicked*/}
-            <section className="w-[17%] h-auto mx-auto" >
-              <Image
-                className=""
-                width={0}
-                height={0}
-                alt="box-logo"
-                src="/assets/add-sign-small.png"
-                layout="responsive"
-                objectFit="contain"
-              />
-            </section>
-            <p className="text-sm">Add Another Component</p>
-          </button>
+            <button type="submit" className="app-button bg-[#669999] hover:bg-[#78acac] float-right mt-4">Submit</button>
+          </div>
         </div>
+      </form>
 
-
-
-        {/* Use textarea, if possible, also its grid size must be larger than two former */}
-      </div>
     </>
   )
 }
