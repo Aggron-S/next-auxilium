@@ -2,7 +2,7 @@ import Button from "./Button";
 import Card from "./Card";
 import Loader from "./Loader";
 import ProgressBar from "./ProgressBar";
-import Alert from "./Alert";
+// import Alert from "./Alert";
 
 
 // Export tools
@@ -11,5 +11,5 @@ export {
   Card, 
   Loader, 
   ProgressBar, 
-  Alert
+  // Alert
 };
