@@ -57,10 +57,10 @@
 
   // Side Menu
   .sidemenu {
-    @apply fixed top-0 right-[-250px] w-[250px] h-screen z-0 transition-[right] duration-300 ease-out;
-    .sidemenu-content {
-      @apply h-full;
-    }
+    @apply fixed top-0 right-[-250px] w-[250px] z-0 transition-[right] duration-300 ease-out;
+    // .sidemenu-content {
+    //   @apply h-full;
+    // }
   }
 
   .sidemenu.show {

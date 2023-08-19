@@ -26,6 +26,8 @@ const SubNav = () => {
   }, [currentUrl]);
 
   const searchProject = (e: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => {
+    // Make a logic here, wherein you will use the custom Alert component and do some conditioning (if user pressed search icon for small screen)
+    
     if (e.type === 'click' || ((e as React.KeyboardEvent<HTMLInputElement>).key === 'Enter')) {
       e.preventDefault();
       // Get User Input
@@ -39,7 +41,7 @@ const SubNav = () => {
       {!appStaticPath.includes(router.pathname) && (
         <nav className="flex items-center justify-between p-3 mb-5 bg-gradient-to-r from-[#FF6633] to-[#669799]">
           {/* Subnav text depends on your current page location */}
-          <h2 className="text-white">{state.subHeaderName}</h2>
+          <p className="text-white text-3xl sm:text-4xl md:text-5xl">{state.subHeaderName}</p>
 
           {state.shouldDisplaySearch && (
             state.windowWidth < 768 ? (
