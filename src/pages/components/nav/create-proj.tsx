@@ -4,12 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 // Firebase Imports
-import { auth, googleProvider, db, storage } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 // User Defined Imports
-import { Card } from "../tools";
+import { Card } from "@/shared/Tools";
+import ProjectData  from "@/shared/ProjectData";
 
 const CreateProj = (): React.JSX.Element => {
   const router = useRouter();
@@ -30,27 +31,31 @@ const CreateProj = (): React.JSX.Element => {
     const userDataParentDocRef = doc(db, "users", auth?.currentUser?.uid ?? "", "projects", projId);
     const userDataProjectUpdatesColRef = collection(db, "users", auth?.currentUser?.uid ?? "", "projects", projId, "project_updates");
 
+    const projectDataTemplate: ProjectData = {
+      id: projId,
+      image: "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
+      progress: (Math.floor(Math.random() * 100) + 1).toString(),
+      
+      // Proponents Info
+      name: form.proponent_name.value as string,
+      address: form.address.value as string,
+      contact_no: form.contact_no.value as string,
+      // Project Info
+      title: form.project_title.value as string,
+      funds_needed: form.funds_needed.value as string,
+      duration: form.duration.value as string,
+      department: form.department.value as string,
+      adviser: form.adviser.value as string,
+      
+      // Project Detail
+      introduction : form.introduction.value as string,
+      background : form.background.value as string,
+      methodology : form.methodology.value as string
+    };
+
     const data = [
       {
-        id: projId,
-        image: "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=871&q=80",
-        progress: Math.floor(Math.random() * 100) + 1,
-        
-        // Proponents Info
-        name: form.proponent_name.value as string,
-        address: form.address.value as string,
-        contact_no: form.contact_no.value as string,
-        // Project Info
-        title: form.project_title.value as string,
-        funds_needed: form.funds_needed.value as string,
-        duration: form.duration.value as string,
-        department: form.department.value as string,
-        adviser: form.adviser.value as string,
-        
-        // Project Detail
-        introduction : form.introduction.value as string,
-        background : form.background.value as string,
-        methodology : form.methodology.value as string,
+        ...projectDataTemplate
       },
       // Project Updates
       [
@@ -215,90 +220,6 @@ const CreateProj = (): React.JSX.Element => {
                 <div className="mt-4 mb-4">
                   <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Methodology:</label>
                   <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Methodology" name="methodology"></textarea>
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs mx-auto">Add Header Image</p>
-                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                      <section className="w-[50%] h-auto mx-auto" >
-                        <Image
-                          className=""
-                          width={0}
-                          height={0}
-                          alt="box-logo"
-                          src="/assets/add-sign-small.png"
-                          layout="responsive"
-                          objectFit="contain"
-                        />
-                      </section>
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-xs mx-auto">Scope of Crowd Funding</p>
-                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                      <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-xs mx-auto">Add Social Media Links</p>
-                    <div className="bg-slate-300 rounded-xl px-4 py-4 w-full">
-                      <div className="flex flex-col items-center">
-                        <div className="flex items-center">
-                          {/* Discord */}
-                          <section className="w-[17%] h-auto mx-auto" >
-                            <Image
-                              className=""
-                              width={0}
-                              height={0}
-                              alt="box-logo"
-                              src="/assets/discord-icon.png"
-                              layout="responsive"
-                              objectFit="contain"
-                            />
-                          </section>
-                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                        </div>
-
-                        <div className="flex items-center">
-                          {/* Facebook */}
-                          <section className="w-[17%] h-auto mx-auto" >
-                            <Image
-                              className=""
-                              width={0}
-                              height={0}
-                              alt="box-logo"
-                              src="/assets/facebook-icon.png"
-                              layout="responsive"
-                              objectFit="contain"
-                            />
-                          </section>
-                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                        </div>
-
-                        <div className="flex items-center">
-                          {/* Twitter */}
-                          <section className="w-[17%] h-auto mx-auto" >
-                            <Image
-                              className=""
-                              width={0}
-                              height={0}
-                              alt="box-logo"
-                              src="/assets/twitter-icon.png"
-                              layout="responsive"
-                              objectFit="contain"
-                            />
-                          </section>
-                          <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="" />
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </Card>

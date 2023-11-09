@@ -4,32 +4,18 @@ import Image from "next/image";
 // import axios from "axios";
 
 // Firebase Imports
-import { auth, googleProvider, db, storage } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import {
   // Firebase Query (collection & document)
   doc, collection, 
-  // Add Data
-  setDoc, addDoc,
   // Get Docs Data
   getDoc, getDocs,
-  // Get Docs Data (realtime)
-  onSnapshot,
-  // Update Data
-  updateDoc,
-  // Delete Data
-  deleteDoc,} from "firebase/firestore"
+} from "firebase/firestore"
 
 // User Defined Imports
-import { Card, ProgressBar, Loader } from "../tools";
+import { Card, ProgressBar, Loader } from "@/shared/Tools";
+import ProjectData  from "@/shared/ProjectData";
 import { useStateService } from "@/shared/StateService";
-
-interface ProjectData {
-  id: string;
-  title: string;
-  introduction: string;
-  progress: string;
-  image: string;
-}
 
 const Discover = (): React.JSX.Element => {
   const [currentData, setData] = useState<ProjectData[]>([]);

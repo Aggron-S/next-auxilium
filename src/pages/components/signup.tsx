@@ -4,13 +4,13 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 // Firebase Imports
-import { auth, googleProvider, db, storage } from "../../firebase";
+import { auth, googleProvider, db } from "../../firebase";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 // User Defined Imports
-import { Card } from "../components/tools";
+import { Card } from "@/shared/Tools";
 
 const SignUpPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -24,10 +24,28 @@ const SignUpPage = (): React.JSX.Element => {
     const repass: string = form.repass.value;
 
     try {
-      if(repass === pass) {
-        await createUserWithEmailAndPassword(auth, email, pass);
+      // if(!email && !pass && !repass) {
+      //   console.log("Please complete the form.");
+      //   return;
+      // } else {
+      // }
+      // if(!email) {
+      //   console.log("Missing email address.");
+      //   return;
+      // }
+      // if(!pass) {
+      //   console.log("Missing password.");
+      //   return;
+      // }
+      // if(!repass) {
+      //   console.log("Please Re-enter the Password.");
+      //   return;
+      // }
+
+      if(pass === repass && repass === pass) {
         // Get other credentials and put in database
-        setUserData(e);
+        await setUserData(e);
+        await createUserWithEmailAndPassword(auth, email, pass);
         console.log(`User Created. Id : ${auth.currentUser?.uid}`);
         
         // Redirect to Login Page
@@ -35,12 +53,89 @@ const SignUpPage = (): React.JSX.Element => {
         await router.push('/components/login');
         form.reset();
       } else {
-        console.log("Re-entered Password doesn't match the password");
+        console.log("Password and Re-entered password should match.");
       }
 
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.code) {
+        const { INVALID_EMAIL, INVALID_PASSWORD, WEAK_PASSWORD } = AuthErrorCodes;
+        switch (error.code) {
+          case INVALID_EMAIL:
+            console.log('Invalid email address.');
+            break;
+
+          case INVALID_PASSWORD:
+            console.log('Invalid password.');
+            break;
+          
+          case WEAK_PASSWORD:
+            console.log("Weak Password.");
+            break; 
+          
+          // Other error codes not defined in AuthErrorCodes
+          default:
+            console.log('Authentication failed. Error code:', error.code);
+        }
+      } else {
+        // Handle other non-AuthErrorCodes exceptions
+        console.log('An error occurred:', error);
+      }
     }
+
+
+    // const userInfo = {
+    //   email: form.email.value,
+    //   pass: form.pass.value,
+    //   repass: form.repass.value
+    // }
+
+    // switch (true) {
+    //   case !Object.values(userInfo).every(Boolean):
+    //     console.log("Please complete the form.");
+    //     return;
+      
+    //   case userInfo.pass !== userInfo.repass || userInfo.repass !== userInfo.pass:
+    //     console.log("Password and Re-entered password should match.");
+    //     return;
+
+    //   default:
+    //     try {
+    //       // Get other credentials and put in database
+    //       await setUserData(e);
+    //       await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.pass);
+    //       console.log(`User Created. Id : ${auth.currentUser?.uid}`);
+          
+    //       // Redirect to Login Page
+    //       console.log("Redirecting to Login Page...");
+    //       await router.push('/components/login');
+    //       form.reset();
+          
+    //     } catch (error) {
+    //       if (error.code) {
+    //         const { INVALID_EMAIL, INVALID_PASSWORD, WEAK_PASSWORD } = AuthErrorCodes;
+    //         switch (error.code) {
+    //           case INVALID_EMAIL:
+    //             console.log('Invalid email address.');
+    //             break;
+    
+    //           case INVALID_PASSWORD:
+    //             console.log('Invalid password.');
+    //             break;
+              
+    //           case WEAK_PASSWORD:
+    //             console.log("Weak Password.");
+    //             break; 
+              
+    //           // Other error codes not defined in AuthErrorCodes
+    //           default:
+    //             console.log('Authentication failed. Error code:', error.code);
+    //         }
+    //       } else {
+    //         // Handle other non-AuthError exceptions
+    //         console.log('An error occurred:', error);
+    //       }
+    //     }
+    // }
   }
 
   // Add User Data to Firestore
@@ -54,9 +149,18 @@ const SignUpPage = (): React.JSX.Element => {
       department : form.department.value as string
     }
     try {
+      if(!data.first_name) {
+        throw new Error("Please put the first name.");
+      }
+      if(!data.last_name) {
+        throw new Error("Please put the last name.");
+      }
+      if(!data.department) {
+        throw new Error("Please put the department name.");
+      }
       await setDoc(userDataDocRef, data);   // set user's data to the database
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
   

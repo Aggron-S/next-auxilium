@@ -5,13 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 // Firebase Imports
-import { auth, googleProvider, db, storage } from "../../firebase";
+import { auth, googleProvider, db } from "../../firebase";
 
-import { signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from 'firebase/auth';
+import { AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup, updateProfile, User } from 'firebase/auth';
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 
 // User Defined Imports
-import { Card } from "../components/tools";
+import { Card } from "@/shared/Tools";
 
 const LoginPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -22,6 +22,20 @@ const LoginPage = (): React.JSX.Element => {
     const pass: string = form.pass.value;
 
     try {
+      if(!email && !pass) {
+        console.log("Please complete the form.");
+        return;
+      } else {
+        if(!email) {
+          console.log("Missing email address.");
+          return;
+        }
+        if(!pass) {
+          console.log("Missing password.");
+          return;
+        }
+      }
+  
       await signInWithEmailAndPassword(auth, email, pass);
       // Get UserName
       getUserName();
@@ -30,8 +44,30 @@ const LoginPage = (): React.JSX.Element => {
       // Once Logged In, Discover Page is the first to land on and user unlocks other app features like create project, fund etc.
       router.push('/components/nav/discover');
       form.reset();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+        if (error.code) {
+          const { INVALID_EMAIL, INVALID_PASSWORD, USER_DELETED } = AuthErrorCodes;
+          switch (error.code) {
+            case INVALID_EMAIL:
+              console.log('Invalid email address.');
+              break;
+
+            case INVALID_PASSWORD:
+              console.log('Invalid password.');
+              break;
+
+            case USER_DELETED:
+              console.log("User not found.");
+              break;
+
+            // Other error codes not defined in AuthErrorCodes
+            default:
+              console.log('Authentication failed. Error code:', error.code);
+          }
+        } else {
+          // Handle other non-AuthError exceptions
+          console.log('An error occurred:', error);
+        }
     }
   }
   const getUserName = async () => {

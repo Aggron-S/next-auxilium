@@ -6,7 +6,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 // import axios from "axios";
 
 // Firebase Imports
-import { auth, db, storage } from "../../firebase";
+import { db } from "../../firebase";
 
 import {
   // Firebase Query (collection & document)
@@ -24,36 +24,20 @@ import {
 } from "firebase/firestore"
 
 // User Defined Imports
-import { Card, ProgressBar } from "../components/tools";
+import { Card, ProgressBar, Modal } from "@/shared/Tools";
+import ProjectData  from "@/shared/ProjectData";
+import { ModalType } from "../components/tools/Modal";
 import { useStateService } from "@/shared/StateService";
-
-interface ProjectData {
-  id: string;
-  progress: string;
-  image: string;
-
-  // Proponents Info
-  name: string;
-  address: string;
-  contact_no: string;
-
-  // Project Info
-  title: string;
-  funds_needed: string;
-  duration: string;
-  department: string;
-  adviser: string;
-
-  // Project Detail
-  introduction: string;
-  background: string;
-  methodology: string;
-}
+import { useModalStateService } from "@/shared/ModalStateService";
 
 const Project = ({ data }: { data: ProjectData}) => {
   const router = useRouter();
   const currentUrl = router.asPath;
   const [displaySideBar, setDisplaySideBar] = useState(false);
+  // Modal States
+  const { modalState, setModalState } = useModalStateService();
+  const [modalType, setModalType] = useState<ModalType>("");
+  // Global State
   const { state, setState } = useStateService();
 
   // handles window resize
@@ -68,7 +52,7 @@ const Project = ({ data }: { data: ProjectData}) => {
     };
   }, []);
 
-  // Sidebar
+  // Handles Sidebar Display
   useEffect(() => {
     const sideBar = () => {
       if (window.innerWidth >= 768 && displaySideBar) {
@@ -86,25 +70,10 @@ const Project = ({ data }: { data: ProjectData}) => {
   const toggleSidebar = () => {
     setDisplaySideBar(!displaySideBar);
   };
-  
-  // Delete Project
-  const deleteProject = async () => {
-    const userProjDocRef = doc(db, "users", auth.currentUser?.uid ?? "", "projects", data.id);
-    try {
-      await deleteDoc(userProjDocRef);
-      console.log("Project Deleted...");
-      await router.push("/components/nav/user-proj");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  // Fund Project
-  const fundProject = async () => {
-    // updateDoc()
-  }
-  // Update Project
-  const updateProject = async () => {
-    // updateDoc()
+
+  const displayModal = (type: ModalType) => {
+    setModalType(type);
+    setModalState("isDisplayModal", true);
   }
 
   return (
@@ -113,7 +82,7 @@ const Project = ({ data }: { data: ProjectData}) => {
         <>
           {/* Fab Button */}
           {state.windowWidth < 768 && (
-            <div className="fixed left-3 top-[550px] z-[9999]">
+            <div className="fixed left-3 top-[550px] z-[999]">
               <button 
                 className="text-slate-200 rounded-md px-7 py-2 bg-[#669999] hover:bg-[#78acac] text-lg font-extralight shadow-sm"
                 onClick={toggleSidebar}
@@ -121,6 +90,11 @@ const Project = ({ data }: { data: ProjectData}) => {
                 display
               </button>
             </div>
+          )}
+
+          {/* Modal */}
+          {modalState.isDisplayModal && (
+            <Modal type={modalType} data={data}/>
           )}
 
           {/* Sidebar Left */}
@@ -154,7 +128,7 @@ const Project = ({ data }: { data: ProjectData}) => {
                   <p className="self-start font-thin ml-2">Raised: ₱500,000</p>
                   <p className="self-start font-thin ml-2">Funded: ₱500,000</p>
                   <p className="self-start font-thin ml-2">Due Date: 01/02/23 </p>
-                  <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac] self-end mr-2" onClick={fundProject}>
+                  <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac] self-end mr-2" onClick={() => displayModal("fund")}>
                     Fund
                   </button>
                   <div className="flex flex-col space-y-3">
@@ -188,7 +162,7 @@ const Project = ({ data }: { data: ProjectData}) => {
 
               {/* Update Project */}
               <div className="flex justify-center items-center">
-                <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={updateProject}>
+                <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={() => displayModal("update")}>
                   Update Project
                 </button>
               </div>
@@ -300,7 +274,7 @@ const Project = ({ data }: { data: ProjectData}) => {
                     </button>
 
                     {/* Delete Project */}
-                    <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={deleteProject}>
+                    <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac]" onClick={() => displayModal("delete")}>
                       Delete
                     </button>
                   </div>

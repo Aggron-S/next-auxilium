@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 
 // Firebase Imports
 import { auth, googleProvider, db } from "../../../firebase";
-import { signOut } from "firebase/auth";
+import { signOut, updateProfile, User } from "firebase/auth";
 
 // User defined imports
 import { useStateService } from "@/shared/StateService";
-import { Card } from "./index";
+import { Card } from "@/shared/Tools";
 
 const Button = () => {
   const router = useRouter();
@@ -24,9 +24,18 @@ const Button = () => {
   //   }
   // }, []);
 
-  const logOut = (e : React.MouseEvent<HTMLButtonElement>) => {
+  const logOut = async (e : React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    signOut(auth);
+    try {
+      await signOut(auth);
+      await updateProfile(auth.currentUser as User, {
+        // Set displayName to empty string when user is logged out
+        displayName: ''
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     router.push("/");
   }
 

@@ -4,25 +4,17 @@ import Image from "next/image";
 // import axios from "axios";
 
 // Firebase Imports
-import { auth, googleProvider, db, storage } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 
-import { onAuthStateChanged } from "firebase/auth";
 import { collection, doc, onSnapshot } from "firebase/firestore";
 
 // User Defined Imports
-import { Card, ProgressBar, Loader} from "../tools";
-
-interface UserProjectData {
-  id: string;
-  title: string;
-  introduction: string;
-  progress: string;
-  image: string;
-}
+import { Card, ProgressBar, Loader } from "@/shared/Tools";
+import ProjectData  from "@/shared/ProjectData";
 
 const UserProj = () => {
   //-----------------Firebase Real-time Query Logic--------------------//
-  const [currentData, setData] = useState<UserProjectData[]>([]);
+  const [currentData, setData] = useState<ProjectData[]>([]);
   const [hasData, setHasData] = useState(true);
 
   // Triggered every changes on the database, ex. client or server made
@@ -30,8 +22,8 @@ const UserProj = () => {
     const projColRef = collection(db, "users", auth?.currentUser?.uid ?? "", "projects");
     try {
       const unsubscribe = onSnapshot(projColRef, snapshot => {
-        const updatedData = snapshot.docs.map((doc): UserProjectData => ({
-          ...(doc.data() as UserProjectData)
+        const updatedData = snapshot.docs.map((doc): ProjectData => ({
+          ...(doc.data() as ProjectData)
         }));
         setData(updatedData);
         // If it has no data returned (since we dont have firebase function to add some status code to database to be fetched by onSnapShot we can't really test its effectivenenss in here)
@@ -53,7 +45,7 @@ const UserProj = () => {
       {/* If has projects, display it, otherwise show create new project card*/}
       {currentData.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-          {currentData.map((userproj: UserProjectData) => (
+          {currentData.map((userproj: ProjectData) => (
             <div className="mx-4 mb-6" key={userproj.id}>
               <Card>
                 <Link href={`/user-proj/${userproj.id}`}>
