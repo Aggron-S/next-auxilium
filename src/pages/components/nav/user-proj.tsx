@@ -49,24 +49,24 @@ const UserProj = () => {
             <div className="mx-4 mb-6" key={userproj.id}>
               <Card>
                 <Link href={`/user-proj/${userproj.id}`}>
-                <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${userproj.image}')`}}></div>
+                  <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${userproj.image}')`}}></div>
 
-                {/* Card Content */}
-                <div className="flex flex-col space-y-3">
-                  <h3 className="mt-3 card-text-h1">{userproj.title}</h3>
-                  <p className="slider max-h-20 overflow-y-auto overflow-x-hidden">{userproj.introduction}</p>
+                  {/* Card Content */}
+                  <div className="flex flex-col space-y-3">
+                    <h3 className="mt-3 card-text-h1">{userproj.title}</h3>
+                    <p className="slider max-h-20 overflow-y-auto overflow-x-hidden">{userproj.introduction}</p>
 
-                  {/*------------------ Raised Amount Details --------------------------*/}
-                  <ProgressBar progress={userproj.progress} />
-                  <div className="flex items-center space-x-3">
-                    <p className="ml-2 font-thin">Raised: ₱500,000</p>
-                    {/* Some Amount */}
-                    <p className="font-thin">Funded: ₱500,000</p>
-                    {/* Some Amount */}
-                    <p className="font-thin">Due Date: 01/02/23 </p>
-                    {/* Due Date */}
+                    {/*------------------ Raised Amount Details --------------------------*/}
+                    <ProgressBar progress={userproj.progress} />
+                    <div className="flex items-center space-x-3">
+                      <p className="ml-2 font-thin">Raised: ₱500,000</p>
+                      {/* Some Amount */}
+                      <p className="font-thin">Funded: ₱500,000</p>
+                      {/* Some Amount */}
+                      <p className="font-thin">Due Date: 01/02/23 </p>
+                      {/* Due Date */}
+                    </div>
                   </div>
-                </div>
                 </Link>
               </Card>
             </div>

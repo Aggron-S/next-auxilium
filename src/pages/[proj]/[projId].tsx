@@ -38,19 +38,7 @@ const Project = ({ data }: { data: ProjectData}) => {
   const { modalState, setModalState } = useModalStateService();
   const [modalType, setModalType] = useState<ModalType>("");
   // Global State
-  const { state, setState } = useStateService();
-
-  // handles window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setState("windowWidth", window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { state } = useStateService();
 
   // Handles Sidebar Display
   useEffect(() => {
@@ -81,7 +69,7 @@ const Project = ({ data }: { data: ProjectData}) => {
       {data ? (
         <>
           {/* Fab Button */}
-          {state.windowWidth < 768 && (
+          {state.isSmallScreen && (
             <div className="fixed left-3 top-[550px] z-[999]">
               <button 
                 className="text-slate-200 rounded-md px-7 py-2 bg-[#669999] hover:bg-[#78acac] text-lg font-extralight shadow-sm"
