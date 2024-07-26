@@ -10,7 +10,7 @@ import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 // User Defined Imports
-import { Card } from "@/shared/Tools";
+import { Card, InputField } from "@/shared/Tools";
 
 const SignUpPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -24,27 +24,9 @@ const SignUpPage = (): React.JSX.Element => {
     const repass: string = form.repass.value;
 
     try {
-      // if(!email && !pass && !repass) {
-      //   console.log("Please complete the form.");
-      //   return;
-      // } else {
-      // }
-      // if(!email) {
-      //   console.log("Missing email address.");
-      //   return;
-      // }
-      // if(!pass) {
-      //   console.log("Missing password.");
-      //   return;
-      // }
-      // if(!repass) {
-      //   console.log("Please Re-enter the Password.");
-      //   return;
-      // }
-
       if(pass === repass && repass === pass) {
         // Get other credentials and put in database
-        await setUserData(e);
+        await setUserData(e);    // remove this and place in user account settings, for initial output of user name, use the email address and let them change it later on
         await createUserWithEmailAndPassword(auth, email, pass);
         console.log(`User Created. Id : ${auth.currentUser?.uid}`);
         
@@ -139,6 +121,8 @@ const SignUpPage = (): React.JSX.Element => {
   }
 
   // Add User Data to Firestore
+  // It's not intended to be here, only email, pass and reenter pass
+  // fields inside of this must be configured on user account settings once the user is logged in and has account
   const setUserData = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const userDataDocRef = doc(db, "users", auth?.currentUser?.uid ?? "");
@@ -176,41 +160,47 @@ const SignUpPage = (): React.JSX.Element => {
       {/*--------------------- Form -----------------------------------*/}
       <Card outside="w-[350px] h-[450px] flex flex-col min-[1206px]:-mt-24" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
         <form onSubmit={createUser}>
+          <InputField fieldName="first_name" />
+          <InputField fieldName="last_name" />
+          <InputField fieldName="department" />
+          <InputField fieldName="email_address" inputType="email" />
+          <InputField fieldName="password" inputType="password" />
+          <InputField fieldName="re_enter_password" inputType="password" />
           {/*---------------------------- First Name -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">First Name</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="First Name" name="fname" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="fname">First Name</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="First Name" id="fname" name="fname" />
+          </div> */}
 
           {/*---------------------------- Last Name -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Last Name</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Last Name" name="lname" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="lname">Last Name</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Last Name" id="lname" name="lname" />
+          </div> */}
 
           {/*---------------------------- Department -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Department</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Department" name="department" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="department">Department</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Department" id="department" name="department" />
+          </div> */}
 
           {/*---------------------------- Email Address -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Email Address</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Email Address" name="email" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="email">Email Address</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Email Address" id="email" name="email" />
+          </div> */}
 
           {/*---------------------------- Password -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Password</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Password" name="pass" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="pass">Password</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Password" id="pass" name="pass" />
+          </div> */}
 
           {/*---------------------------- Re-Enter Password -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Re-Enter Password</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Re-enter Password" name="repass" />
-          </div>
+          {/* <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="repass">Re-Enter Password</label>
+            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Re-enter Password" id="repass" name="repass" />
+          </div> */}
 
           {/*---------------------------- Login -------------------------------------*/}
           <div className="flex justify-end mt-12">

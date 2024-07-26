@@ -55,18 +55,6 @@
     @apply font-thin;
   }
 
-  // Side Menu
-  .sidemenu {
-    @apply fixed top-0 right-[-250px] w-[250px] z-0 transition-[right] duration-300 ease-out;
-    // .sidemenu-content {
-    //   @apply h-full;
-    // }
-  }
-
-  .sidemenu.show {
-    @apply right-0 z-[9999];
-  }
-
   /* ------------ For Specific Projects ----------------*/
   // Sidebar
   .sidebar {

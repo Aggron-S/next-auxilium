@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -13,7 +13,6 @@ import { useStateService } from "@/shared/StateService";
 
 const Header = () => {
   const router = useRouter();
-  const sideMenuRef = useRef<HTMLDivElement | null>(null);
   const [isShowSideMenu, setShowSideMenu] = useState(false);
   const { state, setState } = useStateService();
 
@@ -24,43 +23,17 @@ const Header = () => {
 
   // handles window resize
   useEffect(() => {
-    const handleResize = () => setState("windowWidth", window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
+    const handleResize = () => {
+      setState("isSmallScreen", window.innerWidth < 768);
     };
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Handles SideMenu Display
-  useEffect(() => {
-    const sideMenu = () => {
-      if (window.innerWidth >= 768 && isShowSideMenu) {
-        setShowSideMenu(false);
-      }
-    }
-    window.addEventListener("resize", sideMenu);
-
-    return () => {
-      window.removeEventListener("resize", sideMenu);
-    }
-  }, [isShowSideMenu]);
-
-  // Handles Modal Outside Click (but place it in the Header's side menu, i just created logic here for reference)
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (sideMenuRef.current?.contains(e.target as Node) === false && isShowSideMenu) {
-        setShowSideMenu(false);
-      }
-    };
-
-    window.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      window.removeEventListener('click', handleOutsideClick);
-    };
-  }, [isShowSideMenu]);
-
+  const toggleSideMenu = () => {
+    setShowSideMenu(!isShowSideMenu);
+  };
 
   const currentMode = () => {
     // Change Background Color
@@ -99,23 +72,39 @@ const Header = () => {
     router.push("/");
   }
 
+  const setSideMenuButtonFunc = async (e : React.MouseEvent<HTMLButtonElement>) => {
+    if (!auth?.currentUser) {
+      try {
+        await router.push('/components/login');
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      logOut(e);
+    }
+  }
+
   return (
     <>
       {/* Side Menu (for small screen) */}
-      {isShowSideMenu && (
+      {state.isSmallScreen && (
         <>
-          <div className="fixed inset-0 transition-opacity" ref={sideMenuRef}>
-            <div className="absolute inset-0 bg-gray-900 opacity-75" />
-          </div>
-
-          <Card outside={`sidemenu ${isShowSideMenu ? 'show' : ''}`} inside={`${state.bg_color} ${state.text_color} h-screen pt-4 pb-8 px-4 shadow-xl`}>
+          <Card 
+            outside={`fixed inset-y-0 right-0 z-[9999] pr-[-250px] w-64 transform transition-transform duration-300 ease-in-out ${isShowSideMenu ? 'translate-x-0' : 'translate-x-64'}`} 
+            inside={`${state.bg_color} ${state.text_color} h-screen pt-4 pb-8 px-4 shadow-xl`}
+          >
             <ul className="flex flex-col items-center space-y-4 py-4">
-
-              {/* User */}
-              <div className="flex flex-col items-center space-y-2 py-3">
-                <svg width="90px" height="90px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke={`${state.icon_color}`} strokeWidth="2"></path> <path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke={`${state.icon_color}`} strokeWidth="2"></path> <path d="M6.16406 18.5C6.90074 16.5912 8.56373 16 12.0001 16C15.4661 16 17.128 16.5578 17.855 18.5" stroke={`${state.icon_color}`} strokeWidth="2" strokeLinecap="round"></path> </g></svg>
-                <p>{auth?.currentUser?.displayName}</p>
-              </div>
+              {auth.currentUser !== null ? (
+                // User
+                <div className="flex flex-col items-center space-y-2 py-3">
+                  <svg width="90px" height="90px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke={`${state.icon_color}`} strokeWidth="2"></path> <path d="M15 10C15 11.6569 13.6569 13 12 13C10.3431 13 9 11.6569 9 10C9 8.34315 10.3431 7 12 7C13.6569 7 15 8.34315 15 10Z" stroke={`${state.icon_color}`} strokeWidth="2"></path> <path d="M6.16406 18.5C6.90074 16.5912 8.56373 16 12.0001 16C15.4661 16 17.128 16.5578 17.855 18.5" stroke={`${state.icon_color}`} strokeWidth="2" strokeLinecap="round"></path> </g></svg>
+                  <p>{auth?.currentUser?.displayName}</p>
+                </div>
+              ) : (
+                <Link className="mr-5 mb-7" href="/">
+                  <Image width={150} height={150} alt="auxilium-logo" src="/assets/auxilium-logo.png" />
+                </Link>
+              )}
 
               <Link href="/components/nav/discover">Discover</Link>
 
@@ -138,7 +127,12 @@ const Header = () => {
               </button>
               
               {/* Logout */}
-              <button className="app-button mx-1 bg-[#669999] hover:bg-[#78acac]" onClick={logOut}>Logout</button> 
+              <button 
+                className="app-button  mx-1 w-full bg-[#669999] hover:bg-[#78acac]" 
+                onClick={setSideMenuButtonFunc}
+              >
+                {auth?.currentUser ? "Logout" : "Login"}
+              </button> 
             </ul>
           </Card>
         </>
@@ -150,7 +144,7 @@ const Header = () => {
           <Image width={150} height={150} alt="auxilium-logo" src="/assets/auxilium-logo.png" />
         </Link>
 
-        {state.windowWidth < 768 ? (
+        {state.isSmallScreen ? (
           // Small Screen
           <ul className="flex justify-center items-center mr-2">
             <button 
@@ -164,7 +158,7 @@ const Header = () => {
             </button>
             
             {/* Side Menu Icon */}
-            <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => setShowSideMenu(!isShowSideMenu)}>
+            <button onClick={toggleSideMenu}>
               <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Menu / Hamburger_MD"> <path id="Vector" d="M5 17H19M5 12H19M5 7H19" stroke={`${state.icon_color}`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> </g> </g></svg>
             </button>
           </ul>
@@ -195,6 +189,13 @@ const Header = () => {
             {/* User Icon Button */}
             <Button />
           </ul>
+        )}
+
+        {/* Side Menu Overlay */}
+        {state.isSmallScreen && isShowSideMenu && (
+          <div
+            className="fixed inset-0 bg-black opacity-50 z-[9990]"
+            onClick={toggleSideMenu}></div>
         )}
       </nav>
     </>

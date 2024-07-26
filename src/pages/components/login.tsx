@@ -11,7 +11,7 @@ import { AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup, updateProf
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 
 // User Defined Imports
-import { Card } from "@/shared/Tools";
+import { Card, InputField } from "@/shared/Tools";
 
 const LoginPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -96,17 +96,8 @@ const LoginPage = (): React.JSX.Element => {
       {/*--------------------- Form -----------------------------------*/}
       <Card outside="w-[350px] h-[450px] flex flex-col" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
         <form onSubmit={authUser}>
-          {/*---------------------------- Email Address -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Email Address</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="email" placeholder="Email Address" name="email"/>
-          </div>
-
-          {/*---------------------------- Password -------------------------------------*/}
-          <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Password</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Password" name="pass"/>
-          </div>
+          <InputField fieldName="email_address" inputType="email" />
+          <InputField fieldName="password" inputType="password" />
 
           {/*---------------------------- Login -------------------------------------*/}
           <div className="flex justify-center mt-12 mb-24">

@@ -2,8 +2,8 @@ import { createContext, useContext, useState, FC, ReactNode } from 'react';
 
 export interface AppState {
   darkMode: boolean;
-  windowWidth: number,
   isAuthenticated: boolean;
+  isSmallScreen: boolean;
   text_color: string;
   icon_color: string;
   bg_color: string;
@@ -37,8 +37,8 @@ export const StateServiceProvider: FC<{ children: ReactNode }> = ({ children }) 
   const [state, setState] = useState<AppState>({
     // Initial State Properties
     darkMode: false,
-    windowWidth: 1366,
     isAuthenticated: false,
+    isSmallScreen: false,
     text_color: 'text-black',
     icon_color: '#323232',
     bg_color: 'bg-slate-200',
