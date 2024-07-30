@@ -39,6 +39,10 @@ const Header = () => {
     // Change Background Color
     const newBgColor = state.bg_color === 'bg-slate-200' ? 'bg-[#2f3038]' : 'bg-slate-200';
     setState("bg_color", newBgColor);
+    
+    // Change Card Color
+    const newCardColor = state.card_color === 'bg-[#ced7e0]' ? 'bg-[#3a3d46]' : 'bg-[#ced7e0]';
+    setState("card_color", newCardColor);
 
     // Change Mode Icon
     const newModeIcon = state.currentModeIcon === 'light' ? 'dark' : 'light';

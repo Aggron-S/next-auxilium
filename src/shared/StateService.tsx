@@ -7,6 +7,7 @@ export interface AppState {
   text_color: string;
   icon_color: string;
   bg_color: string;
+  card_color: string;
   currentModeIcon: string;
   header_color: string;
   subHeaderName: string;
@@ -42,6 +43,7 @@ export const StateServiceProvider: FC<{ children: ReactNode }> = ({ children }) 
     text_color: 'text-black',
     icon_color: '#323232',
     bg_color: 'bg-slate-200',
+    card_color: 'bg-[#ced7e0]',
     currentModeIcon: 'light',
     header_color: 'bg-slate-200',
     subHeaderName: '',

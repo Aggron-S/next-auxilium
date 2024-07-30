@@ -97,7 +97,7 @@ const CreateProj = (): React.JSX.Element => {
 
       console.log("New Project Created...");
       // Go to User's Project Page
-      // await router.push("/components/nav/user-proj");
+      await router.push("/components/nav/user-proj");
       // form.reset();
     } catch (error) {
       console.log(error);
@@ -115,18 +115,18 @@ const CreateProj = (): React.JSX.Element => {
                 <h3 className="self-center">Proponents Info</h3>
                 {/*---------------------------- Name -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Name:</label>
-                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Name" name="proponent_name" />
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="name">Name:</label>
+                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Name" name="proponent_name" id="name" required/>
                 </div>
                 {/*---------------------------- Address -------------------------------------*/}
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Address:</label>
-                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Address" name="address" />
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="address">Address:</label>
+                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Address" name="address" id="address" required/>
                 </div>
                 {/*---------------------------- Contact No. -------------------------------------*/}
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Contact No:</label>
-                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Contact No." name="contact_no" />
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="contact-no">Contact No:</label>
+                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Contact No." name="contact_no" id="contact-no" required/>
                 </div>
               </div>
             </Card>
@@ -157,32 +157,32 @@ const CreateProj = (): React.JSX.Element => {
               <h3 className="self-center">Project Info</h3>
               {/*---------------------------- Title -------------------------------------*/}
               <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Title:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Title" name="project_title" />
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="title">Title:</label>
+                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Title" name="project_title" id="title" required/>
               </div>
 
               <div className="flex items-center">
                 {/*---------------------------- Funds Needed -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Funds Needed:</label>
-                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Amount" name="funds_needed" />
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="funds-needed">Funds Needed:</label>
+                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Amount" name="funds_needed" id="funds-needed" required/>
                 </div>
                 {/*---------------------------- Duration -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Duration:</label>
-                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Project Duration" name="duration" />
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="duration">Duration:</label>
+                  <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Project Duration" name="duration" id="duration" required/>
                 </div>
               </div>
 
               {/*---------------------------- Department -------------------------------------*/}
               <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Department:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Department Name" name="department" />
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="department">Department:</label>
+                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Department Name" name="department" id="department" required/>
               </div>
               {/*---------------------------- Adviser -------------------------------------*/}
               <div className="mt-4 mb-4">
-                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Adviser:</label>
-                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Adviser Name" name="adviser" />
+                <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="adviser">Adviser:</label>
+                <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Adviser Name" name="adviser" id="adviser" required/>
               </div>
 
               <div className="flex flex-col items-center">
@@ -208,18 +208,18 @@ const CreateProj = (): React.JSX.Element => {
                 <h3 className="self-center">Project Detail</h3>
                 {/*---------------------------- Introduction -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Introduction:</label>
-                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Introduction" name="introduction"></textarea>
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="introduction">Introduction:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Introduction" name="introduction" id="introduction" required></textarea>
                 </div>
                 {/*---------------------------- Background -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Background:</label>
-                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Background" name="background"></textarea>
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="background">Background:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Background" name="background" id="background" required></textarea>
                 </div>
                 {/*---------------------------- Methodology -------------------------------------*/}
                 <div className="mt-4 mb-4">
-                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="">Methodology:</label>
-                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Methodology" name="methodology"></textarea>
+                  <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="methodology">Methodology:</label>
+                  <textarea className="resize-none shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" placeholder="Methodology" name="methodology" id="methodology" required></textarea>
                 </div>
               </div>
             </Card>

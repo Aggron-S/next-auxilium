@@ -71,17 +71,17 @@ const Discover = (): React.JSX.Element => {
   return (
     <>
       {filteredData.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center gap-x-5 gap-y-10 mb-10">
           {filteredData.map((proj: ProjectData) => (
-            <div className="mx-4 mb-6" key={proj.id}>
+            <div key={proj.id}>
               <Card>
                 <Link href={`/discover/${proj.id}`}>
                   <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${proj.image}')`}}></div>
 
                   {/* Card Content */}
                   <div className="flex flex-col space-y-3">
-                    <h3 className="mt-3 card-text-h1">{proj.title}</h3>
-                    <p className="slider max-h-20 overflow-y-auto overflow-x-hidden">{proj.introduction}</p>
+                    <h3 className="mt-3 card-text-h1 truncate h-11 max-h-11" title={proj.title}>{proj.title}</h3>
+                    <p className="slider h-20 max-h-20 overflow-y-auto overflow-x-hidden">{proj.introduction}</p>
 
                     {/*------------------ Raised Amount Details --------------------------*/}
                     <ProgressBar progress={proj.progress} />

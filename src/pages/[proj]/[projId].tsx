@@ -187,40 +187,40 @@ const Project = ({ data }: { data: ProjectData}) => {
               <div className="slider project-updates">
                 {/* Need map method inside */}
                 <div className="project-update-card">
-                  <Card inside={`pt-4 pb-8 shadow-md ${state.text_color}`}>
-                    <div className="bg-cover min-h-[150px] rounded-md" style={{backgroundImage: `url('${data.image}')`}}></div>
-                    <div className="slider px-4 space-y-4 project-update-card-content">
-                      <h3 className="card-title mt-4">Initial Setup</h3>
+                  <Card>
+                    <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${data.image}')`}}></div>
+                    <div className="slider px-4 mt-7 space-y-5 project-update-card-content">
+                      <h3 className="card-title">Initial Setup</h3>
                       <h4>June 05,2023</h4>
                       <p className="card-subtitle">Created Initial Setup</p>
                     </div>
                   </Card>
                 </div>
                 <div className="project-update-card">
-                  <Card inside={`pt-4 pb-8 shadow-md ${state.text_color}`}>
-                    <div className="bg-cover min-h-[150px] rounded-md" style={{backgroundImage: `url('${data.image}')`}}></div>
-                    <div className="slider px-4 space-y-4 project-update-card-content">
-                      <h3 className="card-title mt-4">Documentation</h3>
+                  <Card>
+                    <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${data.image}')`}}></div>
+                    <div className="slider px-4 mt-7 space-y-5 project-update-card-content">
+                      <h3 className="card-title">Documentation</h3>
                       <h4>June 07,2023</h4>
                       <p className="card-subtitle">Created Documentation</p>
                     </div>
                   </Card>
                 </div>
                 <div className="project-update-card">
-                  <Card inside={`pt-4 pb-8 shadow-md ${state.text_color}`}>
-                    <div className="bg-cover min-h-[150px] rounded-md" style={{backgroundImage: `url('${data.image}')`}}></div>
-                    <div className="slider px-4 space-y-4 project-update-card-content">
-                      <h3 className="card-title mt-4">Documentation</h3>
+                  <Card>
+                    <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${data.image}')`}}></div>
+                    <div className="slider px-4 mt-7 space-y-5 project-update-card-content">
+                      <h3 className="card-title">Documentation</h3>
                       <h4>June 07,2023</h4>
                       <p className="card-subtitle">Created Documentation</p>
                     </div>
                   </Card>
                 </div>
                 <div className="project-update-card">
-                  <Card inside={`pt-4 pb-8 shadow-md ${state.text_color}`}>
-                    <div className="bg-cover min-h-[150px] rounded-md" style={{backgroundImage: `url('${data.image}')`}}></div>
-                    <div className="slider px-4 space-y-4 project-update-card-content">
-                      <h3 className="card-title mt-4">Documentation</h3>
+                  <Card>
+                    <div className="bg-cover min-h-[150px] rounded-sm" style={{backgroundImage: `url('${data.image}')`}}></div>
+                    <div className="slider px-4 mt-7 space-y-5 project-update-card-content">
+                      <h3 className="card-title">Documentation</h3>
                       <h4>June 07,2023</h4>
                       <p className="card-subtitle">Created Documentation</p>
                     </div>
