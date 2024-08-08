@@ -149,16 +149,16 @@ const SignUpPage = (): React.JSX.Element => {
   }
   
   return (
-    <div className="flex items-center justify-center max-[1205px]:mt-12 h-full gap-[15%] mr-6">
+    <div className="flex items-center justify-center md:justify-evenly h-full gap-x-10">
       <Image
-        className="w-[650px] h-[600px] max-[1205px]:hidden"
+        className="w-[500px] h-[500px] max-[1205px]:hidden"
         width={0}
         height={0}
         alt="box-logo"
         src="/assets/box-logo.svg"
       />
       {/*--------------------- Form -----------------------------------*/}
-      <Card outside="w-[350px] h-[450px] flex flex-col min-[1206px]:-mt-24" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
+      <Card outside="w-[350px] h-[450px] flex flex-col min-[1206px]:-mt-24 mx-5" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
         <form onSubmit={createUser}>
           <InputField fieldName="first_name" />
           <InputField fieldName="last_name" />

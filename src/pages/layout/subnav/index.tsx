@@ -39,7 +39,7 @@ const SubNav = () => {
   return (
     <>
       {!appStaticPath.includes(router.pathname) && (
-        <nav className="flex items-center justify-between p-3 mb-5 bg-gradient-to-r from-[#FF6633] to-[#669799]">
+        <nav className="flex items-center justify-between p-3 bg-gradient-to-r from-[#FF6633] to-[#669799]">
           {/* Subnav text depends on your current page location */}
           <p className="text-white text-3xl sm:text-4xl md:text-5xl">{state.subHeaderName}</p>
 

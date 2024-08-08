@@ -31,11 +31,7 @@
   }
 }
 
-@layer utilities {
-  .home-bg-img {
-    background-image: url("/assets/circle-glow-effect.png");
-  }
-  
+@layer components {
   .app-button {
     @apply text-slate-200 rounded-md p-1 px-5;
   }

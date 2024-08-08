@@ -6,7 +6,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 // import axios from "axios";
 
 // Firebase Imports
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 
 import {
   // Firebase Query (collection & document)
@@ -60,6 +60,10 @@ const Project = ({ data }: { data: ProjectData}) => {
   };
 
   const displayModal = (type: ModalType) => {
+    if(!auth?.currentUser) {
+      router.push("/components/login");
+      return;
+    }
     setModalType(type);
     setModalState("isDisplayModal", true);
   }
@@ -169,9 +173,9 @@ const Project = ({ data }: { data: ProjectData}) => {
           <div className={`content ${currentUrl.startsWith("/user-proj") && `min-[1001px]:mr-[250px]`}`}>
             <div className={`grid grid-cols-1 space-y-9 ${state.text_color}`}>
               <div className="justify-self-end mr-4">
-                <h3 className="font-bold">{data.title}</h3>
+                <h3 className="text-right font-bold">{data.title}</h3>
                 <div className="inline-flex float-right space-x-2">
-                  <h4>{data.department}</h4>
+                  <h4 className="text-right">{data.department}</h4>
                   <Image
                     className="w-8 h-8 rounded-full"
                     width={0}
