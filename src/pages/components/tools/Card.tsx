@@ -5,7 +5,7 @@ const Card = ({
   outside,
   inside,
   children,
-}: {
+} : {
   outside?: string;
   inside?: string;
   children: React.ReactNode;

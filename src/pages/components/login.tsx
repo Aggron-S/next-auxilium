@@ -11,7 +11,7 @@ import { AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup, updateProf
 import { addDoc, collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 
 // User Defined Imports
-import { Card, InputField } from "@/shared/Tools";
+import { Form, InputField } from "@/shared/Tools";
 
 const LoginPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -94,26 +94,31 @@ const LoginPage = (): React.JSX.Element => {
         src="/assets/box-logo.svg"
       />
       {/*--------------------- Form -----------------------------------*/}
-      <Card outside="w-[350px] h-[450px] flex flex-col mx-5" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
-        <form onSubmit={authUser}>
-          <InputField fieldName="email_address" inputType="email" />
-          <InputField fieldName="password" inputType="password" />
+      <Form 
+        outside="flex flex-col mx-5" 
+        inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8"
+        onSubmit={authUser}
+      >
+        <InputField fieldName="email_address" inputType="email" />
+        <InputField fieldName="password" inputType="password" />
 
-          {/*---------------------------- Login -------------------------------------*/}
-          <div className="flex justify-center mt-12 mb-24">
-            <button type="submit" className="app-button bg-[#202027] hover:bg-[#3c3c46]">
-              Login
-            </button>
-          </div>
-          {/*---------------------------- Not Registered -------------------------------------*/}
-          <div className="flex items-center justify-between bg-slate-300 rounded-xl p-4 w-full">
-            <p className="text-black ">Not Registered Yet?</p>
-            <Link className="app-button bg-[#669999] hover:bg-[#78acac]" href="/components/signup">
-              Sign Up
-            </Link>
-          </div>
-        </form>
-      </Card>
+        {/*---------------------------- Login -------------------------------------*/}
+        <div className="flex justify-center mt-12 mb-24">
+          <button type="submit" className="app-button bg-[#202027] hover:bg-[#3c3c46]">
+            Login
+          </button>
+        </div>
+        {/*---------------------------- Not Registered -------------------------------------*/}
+        <div className="flex items-center justify-between gap-x-5 bg-slate-300 rounded-xl p-4 w-full">
+          <p className="text-black text-sm md:text-base">Not Registered Yet?</p>
+          <Link 
+            className="bg-[#669999] hover:bg-[#78acac] text-slate-200 rounded-md p-1 px-5 text-sm md:text-base" 
+            href="/components/signup"
+          >
+            Sign Up
+          </Link>
+        </div>
+      </Form>
     </div>
   );
 };

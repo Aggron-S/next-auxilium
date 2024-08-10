@@ -10,7 +10,7 @@ import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, orderBy, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 // User Defined Imports
-import { Card, InputField } from "@/shared/Tools";
+import { Form, InputField } from "@/shared/Tools";
 
 const SignUpPage = (): React.JSX.Element => {
   const router = useRouter();
@@ -149,7 +149,7 @@ const SignUpPage = (): React.JSX.Element => {
   }
   
   return (
-    <div className="flex items-center justify-center md:justify-evenly h-full gap-x-10">
+    <div className="flex items-center justify-center md:justify-evenly h-[80%] gap-x-10">
       <Image
         className="w-[500px] h-[500px] max-[1205px]:hidden"
         width={0}
@@ -158,58 +158,25 @@ const SignUpPage = (): React.JSX.Element => {
         src="/assets/box-logo.svg"
       />
       {/*--------------------- Form -----------------------------------*/}
-      <Card outside="w-[350px] h-[450px] flex flex-col min-[1206px]:-mt-24 mx-5" inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8">
-        <form onSubmit={createUser}>
-          <InputField fieldName="first_name" />
-          <InputField fieldName="last_name" />
-          <InputField fieldName="department" />
-          <InputField fieldName="email_address" inputType="email" />
-          <InputField fieldName="password" inputType="password" />
-          <InputField fieldName="re_enter_password" inputType="password" />
-          {/*---------------------------- First Name -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="fname">First Name</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="First Name" id="fname" name="fname" />
-          </div> */}
+      <Form 
+        outside="flex flex-col mt-44 mx-5" 
+        inside="bg-gradient-to-br from-[#669999] from-35% to-[#FF6633] rounded-lg shadow-md px-8 pt-6 pb-8"
+        onSubmit={createUser}
+      >
+        <InputField fieldName="first_name" />
+        <InputField fieldName="last_name" />
+        <InputField fieldName="department" />
+        <InputField fieldName="email_address" inputType="email" />
+        <InputField fieldName="password" inputType="password" />
+        <InputField fieldName="re_enter_password" inputType="password" />
 
-          {/*---------------------------- Last Name -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="lname">Last Name</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Last Name" id="lname" name="lname" />
-          </div> */}
-
-          {/*---------------------------- Department -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="department">Department</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Department" id="department" name="department" />
-          </div> */}
-
-          {/*---------------------------- Email Address -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="email">Email Address</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="text" placeholder="Email Address" id="email" name="email" />
-          </div> */}
-
-          {/*---------------------------- Password -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="pass">Password</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Password" id="pass" name="pass" />
-          </div> */}
-
-          {/*---------------------------- Re-Enter Password -------------------------------------*/}
-          {/* <div className="mb-4">
-            <label className="block text-gray-700 text-md font-bold mb-2" htmlFor="repass">Re-Enter Password</label>
-            <input className="shadow-xl opacity-80 bg-slate-50 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none" type="password" placeholder="Re-enter Password" id="repass" name="repass" />
-          </div> */}
-
-          {/*---------------------------- Login -------------------------------------*/}
-          <div className="flex justify-end mt-12">
-            <button type="submit" className="app-button bg-[#202027] hover:bg-[#3c3c46]">
-              Sign Up
-            </button>
-          </div>
-        </form>
-      </Card>
+        {/*---------------------------- Login -------------------------------------*/}
+        <div className="flex justify-end mt-12">
+          <button type="submit" className="app-button bg-[#202027] hover:bg-[#3c3c46]">
+            Sign Up
+          </button>
+        </div>
+      </Form>
     </div>
   )
 }

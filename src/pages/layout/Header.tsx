@@ -8,7 +8,8 @@ import { auth } from "../../firebase";
 import { signOut, updateProfile, User } from "firebase/auth";
 
 // User defined Imports
-import { Button, Card } from "@/shared/Tools";
+import { Button } from "@/shared/Tools";
+import SideMenu from "../components/SideMenu";
 import { useStateService } from "@/shared/StateService";
 
 const Header = () => {
@@ -93,7 +94,7 @@ const Header = () => {
       {/* Side Menu (for small screen) */}
       {state.isSmallScreen && (
         <>
-          <Card 
+          <SideMenu 
             outside={`fixed inset-y-0 right-0 z-[9999] pr-[-250px] w-64 transform transition-transform duration-300 ease-in-out ${isShowSideMenu ? 'translate-x-0' : 'translate-x-64'}`} 
             inside={`${state.bg_color} ${state.text_color} h-screen pt-4 pb-8 px-4 shadow-xl`}
           >
@@ -138,7 +139,7 @@ const Header = () => {
                 {auth?.currentUser ? "Logout" : "Login"}
               </button> 
             </ul>
-          </Card>
+          </SideMenu>
         </>
       )}
 
