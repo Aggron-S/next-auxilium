@@ -74,7 +74,7 @@ const Project = ({ data }: { data: ProjectData}) => {
         <>
           {/* Fab Button */}
           {state.isSmallScreen && (
-            <div className="fixed left-3 top-[550px] z-[999]">
+            <div className="fixed left-3 top-[550px] z-48">
               <button 
                 className="text-slate-200 rounded-md px-7 py-2 bg-[#669999] hover:bg-[#78acac] text-lg font-extralight shadow-sm"
                 onClick={toggleSidebar}
@@ -120,7 +120,7 @@ const Project = ({ data }: { data: ProjectData}) => {
                   <p className="self-start font-thin ml-2">Raised: ₱500,000</p>
                   <p className="self-start font-thin ml-2">Funded: ₱500,000</p>
                   <p className="self-start font-thin ml-2">Due Date: 01/02/23 </p>
-                  <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac] self-end mr-2" onClick={() => displayModal("fund")}>
+                  <button type="button" className="app-button bg-[#669999] hover:bg-[#78acac] self-end mr-2" onClick={() => displayModal("payment")}>
                     Fund
                   </button>
                   <div className="flex flex-col space-y-3">

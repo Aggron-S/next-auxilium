@@ -1,18 +1,30 @@
-import { deleteDoc, doc } from "firebase/firestore";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { deleteDoc, doc } from "firebase/firestore";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 
 // Firebase Imports
 import { auth, db } from "../../../firebase";
 
 // User Defined Imports
 import ProjectData  from "@/shared/ProjectData";
+import { useStateService } from "@/shared/StateService";
 import { useModalStateService } from "@/shared/ModalStateService";
+import Checkout from "../Checkout";
 
-export type ModalType = "fund" | "update" | "delete" | "";
+export type ModalType = "update" | "delete" | "submit" | "payment" | "";
 
 const Modal = ({ type, data }: {type: ModalType, data: ProjectData}) => {
   const router = useRouter();
+  const { state } = useStateService();
   const { setModalState }  = useModalStateService();
+
+  // // Stripe Payment Pubishable key validation
+  // if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
+  //   throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
+  // }
+  // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
   // Fund Project
   const fundProject = async () => {
@@ -35,51 +47,52 @@ const Modal = ({ type, data }: {type: ModalType, data: ProjectData}) => {
     }
   }
 
+  // Stripe Payment
+
   // Put tailwindcss classnames in here (it should be centered and has modal attributes)
   // No fund, update and delete logic as of now, finish and put it below on the jsx logic
   return (
     <>
-      {type === "fund" && (
-        <>
-          <div className="fixed z-[1000] overflow-y-auto top-0 w-full left-0">
-            <div className="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-              <div className="fixed inset-0 transition-opacity">
-                <div className="absolute inset-0 bg-gray-900 opacity-75" />
-              </div>
+      {/* Screen Overlay */}
+      <div className="fixed inset-0 bg-[#080F25] opacity-70 z-[100]"></div>
 
-              <span className="inline-block align-middle h-screen">&#8203;</span>
-
-              <div className="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                  <label className="font-medium text-gray-800">Name</label>
-                  <input type="text" className="w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3" />
-                  <label className="font-medium text-gray-800">Url</label>
-                  <input type="text" className="w-full outline-none rounded bg-gray-100 p-2 mt-2 mb-3" />
-                </div>
-                <div className="bg-gray-200 px-4 py-3 text-right">
-                  <button type="button" className="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2" onClick={() => setModalState("isDisplayModal", false)}><i className="fas fa-times"></i> Cancel</button>
-                </div>
-              </div>
+      {/* Modal Content */}
+      <div className="fixed inset-0 flex items-center justify-center z-[102]">
+        <div
+          tabIndex={-1}
+          className={`${state.card_color} w-11/12 max-w-md p-6 rounded-lg mx-4 outline-none`}
+        >
+          {type === "update" && (
+            <div className="flex justify-center items-center h-[50vh] z-999">
+            <div className="bg-red-500">
+              <h1>Update Project</h1>
             </div>
+            <button className="bg-red-600" onClick={() => setModalState("isDisplayModal", false)}>Update</button>
           </div>
-        </>
-      )}
-      {type === "update" && (
-        <div className="flex justify-center items-center h-[50vh] z-999">
-        <div className="bg-red-500">
-          <h1>Update Project</h1>
+          )}
+          {type === "delete" && (
+            <div className="flex justify-center items-center h-[50vh] z-999">
+              <div className="bg-red-500">
+                <h1>Delete Project</h1>
+              </div>
+              <button className="bg-red-600" onClick={deleteProject}>Delete</button>
+            </div>
+          )}
+          {type === "payment" && (
+            <Checkout amount={500} />
+            // <Elements
+            //   stripe={stripePromise}
+            //   options={{
+            //     mode: "payment",
+            //     amount: 500,
+            //     currency: "usd",
+            //   }}
+            // >
+            //   <Checkout amount={500} />
+            // </Elements>
+          )}
         </div>
-        <button className="bg-red-600" onClick={() => setModalState("isDisplayModal", false)}>Update</button>
       </div>
-      )}
-      {type === "delete" && (
-        <div className="flex justify-center items-center h-[50vh] z-999">
-          <div className="bg-red-500">
-            <h1>Delete Project</h1>
-          </div>
-          <button className="bg-red-600" onClick={deleteProject}>Delete</button>
-        </div>
-      )}
     </>
   );
 };

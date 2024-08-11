@@ -5,7 +5,17 @@ import Layout from "./layout/Layout";
 import { StateServiceProvider } from '@/shared/StateService';
 import { ModalStateServiceProvider } from '@/shared/ModalStateService';
 
+// Stripe
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 export default function App({ Component, pageProps }: AppProps) {
+  // Stripe Payment Pubishable key validation
+  if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {
+    throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
+  }
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+  
   return (
     <>
       <Head>
@@ -17,8 +27,16 @@ export default function App({ Component, pageProps }: AppProps) {
       <StateServiceProvider>
         <Layout>
           <ModalStateServiceProvider>
-
-            <Component {...pageProps} />
+            <Elements
+              stripe={stripePromise}
+              options={{
+                mode: "payment",
+                amount: 500,
+                currency: "usd",
+              }}
+            >
+              <Component {...pageProps} />
+            </Elements>
 
           </ModalStateServiceProvider>
         </Layout>
