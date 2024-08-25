@@ -51,6 +51,7 @@ const Modal = ({ type, data }: {type: ModalType, data: ProjectData}) => {
 
   // Put tailwindcss classnames in here (it should be centered and has modal attributes)
   // No fund, update and delete logic as of now, finish and put it below on the jsx logic
+  
   return (
     <>
       {/* Screen Overlay */}
